@@ -31,17 +31,17 @@
 export default {
   name: 'Edit',
   methods: {
-    onDrag() {
-      console.log(111);
+    onDrag () {
+      console.log(111)
     },
-    onResize() {
-      console.log(222);
+    onResize () {
+      console.log(222)
     },
-    onClick(item) {
-      console.log(item);
-    },
-  },
-};
+    onClick (item) {
+      console.log(item)
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
