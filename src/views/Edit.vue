@@ -1,45 +1,40 @@
 <template>
   <div id="editor">
     <div id="toolbar">
-      <div></div>
+      <toolbar></toolbar>
     </div>
-    <div id="level-ctrl"></div>
+    <div id="level-ctrl">
+      <level-ctrl></level-ctrl>
+    </div>
     <div id="main">
-      <vue-draggable-resizable
-        v-for="item in 10"
-        :key="item"
-        class-name="atlas-chart"
-        class-name-draggable="my-handle-class"
-        :w="100"
-        :h="100"
-        :x="item*100"
-        :y="item*50"
-        :z="item"
-        @dragging="onDrag"
-        @resizing="onResize"
-        @activated="onClick(item)"
-        :parent="true"
-      >
-        <div class="chart1"></div>
-      </vue-draggable-resizable>
+      <chart-layout></chart-layout>
     </div>
-    <div id="config-ctrl"></div>
+    <div id="config-ctrl">
+      <config-ctrl></config-ctrl>
+    </div>
   </div>
 </template>
 
 <script>
+import { LevelCtrl, Toolbar, ConfigCtrl, ChartLayout } from './subPages'
+import chartList from '@/data/chart-list.js'
 export default {
   name: 'Edit',
-  methods: {
-    onDrag () {
-      console.log(111)
-    },
-    onResize () {
-      console.log(222)
-    },
-    onClick (item) {
-      console.log(item)
+  components: {
+    Toolbar,
+    LevelCtrl,
+    ConfigCtrl,
+    ChartLayout
+  },
+  data () {
+    return {
+      chartList
     }
+  },
+  created () {
+    this.$store.commit('updateAllChart', [])
+  },
+  methods: {
   }
 }
 </script>
@@ -49,19 +44,36 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   > div {
     position: absolute;
   }
-  #main {
-    position: absolute;
-    top: 0;
+  #toolbar {
+    height: 80px;
     left: 0;
     right: 0;
+    border: 1px solid rgb(55, 145, 62);
+  }
+  #level-ctrl {
+    width: 200px;
+    top: 80px;
+    left: 0;
     bottom: 0;
-    .my-handle-class {
-      position: absolute;
-      background: black;
-    }
+    border: 1px solid rgb(36, 68, 136);
+  }
+  #config-ctrl {
+    width: 300px;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgb(36, 68, 136);
+  }
+  #main {
+    top: 80px;
+    left: 200px;
+    right: 300px;
+    bottom: 0;
+    border: 1px solid red;
     .chart1 {
       z-index: 50;
     }
