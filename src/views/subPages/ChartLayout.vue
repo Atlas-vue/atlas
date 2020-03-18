@@ -17,8 +17,9 @@
         @activated="onClick(item)"
         :parent="true"
       >
+        <div :class="{'border': curChart.id === item.id}"></div>
         <div class="chart1">
-          <span>{{item.name}}</span>
+          <span>{{item.name}}{{item.zIndex}}</span>
         </div>
       </vue-draggable-resizable>
     </div>
@@ -71,6 +72,7 @@ export default {
   overflow: auto;
   .my-handle-class {
     position: absolute;
+    color: #fff;
     background: black;
   }
   .atlas-canvas {
@@ -81,6 +83,16 @@ export default {
     height: 100%;
     transform-origin: 0 0;
     border: 1px solid red;
+    .border {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: -10px;
+      top: -10px;
+      padding: 10px;
+      border: 1px solid red;
+      pointer-events: none;
+    }
   }
 }
 </style>
