@@ -2,25 +2,23 @@
   <div class="chart-layout">
     <div class="atlas-canvas">
       <vue-draggable-resizable
-        v-for="item in allChartList"
-        :id="item.id"
-        :key="item.id"
+        v-for="({id, name, type, basic, props}) in allChartList"
+        :id="id"
+        :key="id"
         class-name="atlas-chart"
         class-name-draggable="my-handle-class"
-        :w="item.width"
-        :h="item.height"
-        :x="item.x"
-        :y="item.y"
-        :z="item.zIndex"
+        :w="basic.width"
+        :h="basic.height"
+        :x="basic.x"
+        :y="basic.y"
+        :z="basic.zIndex"
         @dragging="onDrag"
         @resizing="onResize"
-        @activated="onClick(item)"
+        @activated="onClick(id)"
         :parent="true"
       >
-        <div :class="{'border': curChart.id === item.id}"></div>
-        <div class="chart1">
-          <span>{{item.name}}{{item.zIndex}}</span>
-        </div>
+        <!-- <div :class="{'border': curChart.id === id}"></div> -->
+        <component v-bind:is="components[type]" :options="props"></component>
       </vue-draggable-resizable>
     </div>
   </div>
@@ -29,12 +27,18 @@
 <script>
 import { mapState } from 'vuex'
 import resize from '@/utils/resize-window'
+import components from '@/components'
 export default {
   name: 'ChartLayout',
   computed: mapState({
     allChartList: 'allChartList',
     curChart: 'curEdit'
   }),
+  data () {
+    return {
+      components
+    }
+  },
   mounted () {
     this.initResize()
   },
@@ -47,19 +51,20 @@ export default {
       resize(atlasCanvas, chartLayout)
     },
     onDrag (x, y) {
-      this.curChart.x = x
-      this.curChart.y = y
+      this.curChart.basic.x = x
+      this.curChart.basic.y = y
       this.$store.commit('setCurEdit', this.curChart)
     },
     onResize (x, y, w, h) {
-      this.curChart.x = x
-      this.curChart.y = y
-      this.curChart.width = w
-      this.curChart.height = h
+      this.curChart.basic.x = x
+      this.curChart.basic.y = y
+      this.curChart.basic.width = w
+      this.curChart.basic.height = h
       this.$store.commit('setCurEdit', this.curChart)
     },
     onClick (item) {
-      this.$store.commit('setCurEdit', item)
+      const curChart = this.allChartList.find(({ id }) => id === item)
+      this.$store.commit('setCurEdit', curChart)
     }
   }
 }

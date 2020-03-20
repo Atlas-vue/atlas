@@ -1,33 +1,28 @@
 <template>
   <div class="toolbar">
-    <el-button @click="addChart">增加表格</el-button>
+    <el-button @click="addChart(chart)" v-for="chart in chartList" :key="chart.name">{{chart.name}}</el-button>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import { v4 as uuid } from 'uuid'
+import chartList from '@/data/chart-list.js'
 export default {
   name: 'Toolbar',
   data () {
     return {
-      opt: {
-        name: '图表',
-        x: 0,
-        y: 0,
-        width: 100,
-        height: 100
-      }
+      chartList
     }
   },
   computed: mapState({
     allChartList: 'allChartList'
   }),
   methods: {
-    addChart () {
+    addChart (chart) {
       const id = `chart-${uuid().split('-').pop()}`
-      const zIndex = this.allChartList.length + 51
-      const opt = Object.assign({}, this.opt, { id, zIndex })
+      const opt = Object.assign({}, chart, { id })
+      opt.basic.zIndex = this.allChartList.length + 51
       this.$store.commit('addChart', opt)
     }
   }

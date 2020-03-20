@@ -1,7 +1,7 @@
 <template>
   <div class="level-ctrl">
     <div shadow="hover" v-for="chart in allChartList" :key="chart.id" @click="clickLevel(chart)">
-      {{chart.name}}{{chart.zIndex}}
+      {{chart.name}}{{chart.basic.zIndex}}
     </div>
   </div>
 </template>

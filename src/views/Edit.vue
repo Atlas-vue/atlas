@@ -17,7 +17,6 @@
 
 <script>
 import { LevelCtrl, Toolbar, ConfigCtrl, ChartLayout } from './subPages'
-import chartList from '@/data/chart-list.js'
 export default {
   name: 'Edit',
   components: {
@@ -28,7 +27,6 @@ export default {
   },
   data () {
     return {
-      chartList
     }
   },
   created () {

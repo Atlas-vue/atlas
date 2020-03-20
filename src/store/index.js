@@ -17,6 +17,7 @@ export default new Vuex.Store({
     },
     addChart (state, data) {
       state.allChartList.push(data)
+      console.log(state.allChartList)
     }
   },
   actions: {
