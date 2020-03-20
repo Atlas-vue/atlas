@@ -1,15 +1,19 @@
 <template>
   <div id="editor">
     <div id="toolbar">
+      <!-- 组件库展示 -->
       <toolbar></toolbar>
     </div>
     <div id="level-ctrl">
+      <!-- 图层控制 -->
       <level-ctrl></level-ctrl>
     </div>
     <div id="main">
+      <!-- 大屏展示 -->
       <chart-layout></chart-layout>
     </div>
     <div id="config-ctrl">
+      <!-- 组件配置 -->
       <config-ctrl></config-ctrl>
     </div>
   </div>
