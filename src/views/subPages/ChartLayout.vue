@@ -2,42 +2,46 @@
   <div class="chart-layout">
     <div class="atlas-canvas">
       <vue-draggable-resizable
-        v-for="({id, name, type, basic, props}) in allChartList"
-        :id="id"
-        :key="id"
+        v-for="item in allChartList"
+        :id="item.id"
+        :key="item.id"
+        :active="item.id === curChart.id"
         class-name="atlas-chart"
         class-name-draggable="my-handle-class"
-        :w="basic.width"
-        :h="basic.height"
-        :x="basic.x"
-        :y="basic.y"
-        :z="basic.zIndex"
+        :w="item.models.base.width"
+        :h="item.models.base.height"
+        :x="item.models.base.x"
+        :y="item.models.base.y"
         @dragging="onDrag"
         @resizing="onResize"
-        @activated="onClick(id)"
+        @activated="onClick(item.id)"
         :parent="true"
       >
+        <navigator-line v-show="item.id === curChart.id" :x="item.models.base.x" :y="item.models.base.y" />
         <!-- <div :class="{'border': curChart.id === id}"></div> -->
-        <component v-bind:is="components[type]" :options="props"></component>
+        <component v-bind:is="item.info.name" :config="item"></component>
       </vue-draggable-resizable>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import resize from '@/utils/resize-window'
-import components from '@/components'
+import Components from '@/components'
+import navigatorLine from '@/components/navigator-line'
 export default {
   name: 'ChartLayout',
+  components: {
+    ...Components,
+    navigatorLine
+  },
   computed: mapState({
     allChartList: 'allChartList',
     curChart: 'curEdit'
   }),
   data () {
-    return {
-      components
-    }
+    return {}
   },
   mounted () {
     this.initResize()
@@ -51,21 +55,22 @@ export default {
       resize(atlasCanvas, chartLayout)
     },
     onDrag (x, y) {
-      this.curChart.basic.x = x
-      this.curChart.basic.y = y
-      this.$store.commit('setCurEdit', this.curChart)
+      this.curChart.models.base.x = x
+      this.curChart.models.base.y = y
+      this.setCurEdit(this.curChart)
     },
     onResize (x, y, w, h) {
-      this.curChart.basic.x = x
-      this.curChart.basic.y = y
-      this.curChart.basic.width = w
-      this.curChart.basic.height = h
-      this.$store.commit('setCurEdit', this.curChart)
+      this.curChart.models.base.x = x
+      this.curChart.models.base.y = y
+      this.curChart.models.base.width = w
+      this.curChart.models.base.height = h
+      this.setCurEdit(this.curChart)
     },
     onClick (item) {
       const curChart = this.allChartList.find(({ id }) => id === item)
-      this.$store.commit('setCurEdit', curChart)
-    }
+      this.setCurEdit(curChart)
+    },
+    ...mapMutations(['setCurEdit'])
   }
 }
 </script>
@@ -78,7 +83,13 @@ export default {
   .my-handle-class {
     position: absolute;
     color: #fff;
-    background: black;
+    box-sizing: border-box;
+    &.active{
+      border: 2px solid #55b6f7;
+    }
+    &:hover{
+      background-color: #55b6f7;
+    }
   }
   .atlas-canvas {
     position: relative;

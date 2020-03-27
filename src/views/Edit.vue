@@ -64,11 +64,13 @@ export default {
     border: 1px solid rgb(36, 68, 136);
   }
   #config-ctrl {
+    box-sizing: border-box;
     width: 300px;
     top: 80px;
     right: 0;
     bottom: 0;
     border: 1px solid rgb(36, 68, 136);
+    padding: 0 10px;
   }
   #main {
     top: 80px;

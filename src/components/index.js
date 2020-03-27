@@ -1,5 +1,5 @@
-import Text from './text/text.vue'
+import gtText from './gt-text/'
 
 export default {
-  Text
+  gtText
 }
