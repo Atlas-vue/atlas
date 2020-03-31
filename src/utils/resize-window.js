@@ -5,6 +5,6 @@ export default function (el, parentNode) {
   const ratinY = parentNode.offsetHeight / containHeight
   const ratinBoundary = containHeight / containWidth
   const ratin = parentNode.offsetHeight / parentNode.offsetWidth > ratinBoundary ? ratinX : ratinY
-  el.style.transform = `scale(${ratin}, ${ratin})`
+  el.style.transform = `scale(${ratin})`
   // el.style.transform = `scale(${1})`
 }

@@ -22,6 +22,19 @@
         <component v-bind:is="item.info.name" :config="item"></component>
       </vue-draggable-resizable>
     </div>
+    <div class="transform-ratio">
+      <span class="label">缩放：</span>
+      <div>
+        <el-slider
+        class="transform-ratio-slider"
+        v-model="transformRatio"
+        :min="10"
+        :max="110"
+        :format-tooltip="formatTooltip"
+        @change="changeTransformRatio"
+        ></el-slider>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,18 +54,23 @@ export default {
     curChart: 'curEdit'
   }),
   data () {
-    return {}
+    return {
+      chartLayout: null,
+      atlasCanvas: null,
+      transformRatio: 50
+    }
   },
   mounted () {
     this.initResize()
   },
   methods: {
     initResize () {
-      const chartLayout = document.querySelector('.chart-layout')
-      const atlasCanvas = document.querySelector('.atlas-canvas')
-      atlasCanvas.style.width = '1920px'
-      atlasCanvas.style.height = '1080px'
-      resize(atlasCanvas, chartLayout)
+      this.chartLayout = document.querySelector('.chart-layout')
+      this.atlasCanvas = document.querySelector('.atlas-canvas')
+      this.atlasCanvas.style.width = '1920px'
+      this.atlasCanvas.style.height = '1080px'
+      resize(this.atlasCanvas, this.chartLayout)
+      this.transformRatio = parseFloat(this.atlasCanvas.style.transform.replace(/[a-z()]/g, '')).toFixed(2) * 100
     },
     onDrag (x, y) {
       this.curChart.models.base.x = x
@@ -70,6 +88,13 @@ export default {
       const curChart = this.allChartList.find(({ id }) => id === item)
       this.setCurEdit(curChart)
     },
+    formatTooltip (val) {
+      return `${val}%`
+    },
+    changeTransformRatio (val) {
+      const ratin = val / 100
+      this.atlasCanvas.style.transform = `scale(${ratin})`
+    },
     ...mapMutations(['setCurEdit'])
   }
 }
@@ -79,6 +104,7 @@ export default {
 .chart-layout {
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: auto;
   .my-handle-class {
     position: absolute;
@@ -108,6 +134,20 @@ export default {
       padding: 10px;
       border: 1px solid red;
       pointer-events: none;
+    }
+  }
+  .transform-ratio {
+    position: fixed;
+    width: 200px;
+    bottom: 0;
+    right: 350px;
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+    align-items: center;
+    &-slider {
+      float: right;
+      width: 300px;
     }
   }
 }
