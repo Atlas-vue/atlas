@@ -77,7 +77,6 @@ export default {
     left: 200px;
     right: 300px;
     bottom: 0;
-    border: 1px solid red;
     .chart1 {
       z-index: 50;
     }

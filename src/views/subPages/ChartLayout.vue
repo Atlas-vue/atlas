@@ -119,22 +119,15 @@ export default {
   }
   .atlas-canvas {
     position: relative;
-    background-color: bisque;
     user-select: none;
     width: 100%;
     height: 100%;
     transform-origin: 0 0;
-    border: 1px solid red;
-    .border {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: -10px;
-      top: -10px;
-      padding: 10px;
-      border: 1px solid red;
-      pointer-events: none;
-    }
+    border: 1px solid rgb(41, 139, 139);
+    background-image:
+        linear-gradient(rgba(55, 161, 144, .5) 1px, transparent 0),
+        linear-gradient(90deg, rgba(55, 161, 144, .5) 1px, transparent 0);
+    background-size: 30px 30px, 30px 30px;
   }
   .transform-ratio {
     position: fixed;
