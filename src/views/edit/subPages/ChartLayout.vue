@@ -17,7 +17,11 @@
         @activated="onClick(item.id)"
         :parent="true"
       >
-        <navigator-line v-show="item.id === curChart.id" :x="item.models.base.x" :y="item.models.base.y" />
+        <navigator-line
+          v-show="item.id === curChart.id"
+          :x="item.models.base.x"
+          :y="item.models.base.y"
+        />
         <!-- <div :class="{'border': curChart.id === id}"></div> -->
         <component v-bind:is="item.info.name" :config="item"></component>
       </vue-draggable-resizable>
@@ -26,12 +30,12 @@
       <span class="label">缩放：</span>
       <div>
         <el-slider
-        class="transform-ratio-slider"
-        v-model="transformRatio"
-        :min="10"
-        :max="110"
-        :format-tooltip="formatTooltip"
-        @change="changeTransformRatio"
+          class="transform-ratio-slider"
+          v-model="transformRatio"
+          :min="10"
+          :max="110"
+          :format-tooltip="formatTooltip"
+          @change="changeTransformRatio"
         ></el-slider>
       </div>
     </div>
@@ -110,10 +114,10 @@ export default {
     position: absolute;
     color: #fff;
     box-sizing: border-box;
-    &.active{
+    &.active {
       border: 2px solid #55b6f7;
     }
-    &:hover{
+    &:hover {
       background-color: #55b6f7;
     }
   }
@@ -124,9 +128,11 @@ export default {
     height: 100%;
     transform-origin: 0 0;
     border: 1px solid rgb(41, 139, 139);
-    background-image:
-        linear-gradient(rgba(55, 161, 144, .5) 1px, transparent 0),
-        linear-gradient(90deg, rgba(55, 161, 144, .5) 1px, transparent 0);
+    background-image: linear-gradient(
+        rgba(55, 161, 144, 0.5) 1px,
+        transparent 0
+      ),
+      linear-gradient(90deg, rgba(55, 161, 144, 0.5) 1px, transparent 0);
     background-size: 30px 30px, 30px 30px;
   }
   .transform-ratio {

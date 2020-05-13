@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="less">
+@import './assets/style/variable.less';
 #app {
   position: relative;
   width: 100%;
@@ -12,7 +13,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-size: @font-size-normal;
+  color: @font-color;
 }
 </style>

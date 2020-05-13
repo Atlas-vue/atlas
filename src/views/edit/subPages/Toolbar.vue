@@ -1,6 +1,10 @@
 <template>
   <div class="toolbar">
-    <el-button @click="addChart(chart)" v-for="chart in chartList" :key="chart.info.label">{{chart.info.label}}</el-button>
+    <el-button
+      @click="addChart(chart)"
+      v-for="chart in chartList"
+      :key="chart.info.label"
+    >{{chart.info.label}}</el-button>
   </div>
 </template>
 
@@ -31,7 +35,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.toolbar {
-
-}
 </style>

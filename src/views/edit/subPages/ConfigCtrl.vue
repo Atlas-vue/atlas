@@ -1,10 +1,7 @@
 <template>
   <div class="config-ctrl">
     <el-tabs v-model="currentTab">
-      <el-tab-pane v-for="item in tabPaneList"
-        :key="item.key"
-        :label="item.title"
-        :name="item.key">
+      <el-tab-pane v-for="item in tabPaneList" :key="item.key" :label="item.title" :name="item.key">
         <custom-form :fields="item.fields" v-model="modelMap[item.key]"></custom-form>
       </el-tab-pane>
     </el-tabs>

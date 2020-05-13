@@ -43,10 +43,11 @@ export default {
 
 <style lang="less" scoped>
 #editor {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
   overflow: hidden;
+  text-align: center;
   > div {
     position: absolute;
   }
