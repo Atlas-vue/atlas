@@ -1,51 +1,126 @@
-// const chartList = [{
-//   name: '文本框',
-//   type: 'Text',
-//   basic: {
-//     x: 0,
-//     y: 0,
-//     width: 100,
-//     height: 40
-//   },
-//   props: {
-//     fileds: [{
-//       label: '文本内容',
-//       value: '默认文本',
-//       prop: 'content',
-//       type: 'text'
-//     }, {
-//       label: '文本颜色',
-//       prop: 'color',
-//       type: 'color-select'
-//     }]
-//   }
-// }, {
-//   name: '折线图',
-//   type: 'Text',
-//   basic: {
-//     x: 0,
-//     y: 0,
-//     width: 400,
-//     height: 200
-//   },
-//   props: {
-//     fileds: [{
-//       label: '文本内容',
-//       prop: 'content',
-//       type: 'text'
-//     }, {
-//       label: '文本颜色',
-//       prop: 'color',
-//       type: 'color-select'
-//     }]
-//   }
-// }]
-
 const chartList = [
   {
     info: {
       label: '折线图',
-      name: 'gt-chart'
+      name: 'chartLine'
+    },
+    props: [
+      {
+        key: 'base',
+        title: '基础',
+        fields: [
+          {
+            tag: 'el-input',
+            details: {
+              label: '名称',
+              name: 'name',
+              placeholder: ''
+            }
+          },
+          {
+            tag: 'el-input',
+            details: {
+              label: '简介',
+              name: 'desc',
+              placeholder: '',
+              type: 'textarea'
+            }
+          },
+          {
+            tag: 'el-input-number',
+            details: {
+              label: '组件宽度',
+              name: 'width',
+              placeholder: ''
+            }
+          },
+          {
+            tag: 'el-input-number',
+            details: {
+              label: '组件高度',
+              name: 'height',
+              placeholder: ''
+            }
+          },
+          {
+            tag: 'el-input-number',
+            details: {
+              label: 'X轴坐标',
+              name: 'x',
+              placeholder: ''
+            }
+          },
+          {
+            tag: 'el-input-number',
+            details: {
+              label: 'Y轴坐标',
+              name: 'y',
+              placeholder: ''
+            }
+          },
+          {
+            tag: 'el-switch',
+            details: {
+              label: '自定义配色',
+              name: 'customColor'
+            }
+          },
+          {
+            tag: 'el-color-picker',
+            details: {
+              label: '文字颜色',
+              name: 'fontColor'
+            },
+            displayKey: 'customColor'
+          },
+          {
+            tag: 'el-color-picker',
+            details: {
+              label: '轴线颜色',
+              name: 'axisColor'
+            },
+            displayKey: 'customColor'
+          },
+          {
+            tag: 'el-color-picker',
+            details: {
+              label: '网格颜色',
+              name: 'gridColor'
+            },
+            displayKey: 'customColor'
+          },
+          {
+            tag: 'el-color-picker',
+            details: {
+              label: '鼠标Hover时颜色',
+              name: 'alignColor'
+            },
+            displayKey: 'customColor'
+          }
+        ]
+      }
+    ],
+    models: {
+      base: {
+        name: 'Echart 折线图',
+        desc: '',
+        width: 400,
+        height: 300,
+        x: 0,
+        y: 0,
+        zIndex: '',
+        customColor: false,
+        fontColor: '',
+        axisColor: '',
+        gridColor: '',
+        alignColor: ''
+      }
+    }
+  },
+  {
+    info: {
+      label: '饼状图',
+      name: 'chartBar'
     },
     props: [
       {

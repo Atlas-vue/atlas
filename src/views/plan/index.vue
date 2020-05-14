@@ -1,5 +1,5 @@
 <template>
-  <div>文档帮助</div>
+  <div>开发计划</div>
 </template>
 
 <script>

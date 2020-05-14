@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "echarts": "^4.7.0",
     "element-ui": "^2.13.0",
     "lodash.clonedeep": "^4.5.0",
     "uuid": "^7.0.2",
@@ -40,6 +41,7 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.43.0"
+    "webpack": "^4.43.0",
+    "markdown-it": "^10.0.0"
   }
 }

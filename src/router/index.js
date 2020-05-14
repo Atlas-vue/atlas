@@ -36,9 +36,9 @@ const routes = [
             component: Views.Example
           },
           {
-            path: '/home/help',
-            name: 'Help',
-            component: Views.Help
+            path: '/home/plan',
+            name: 'Plan',
+            component: () => import(/* webpackChunkName: "plain" */ '@/document/plain.md')
           }
         ]
       }

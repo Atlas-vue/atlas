@@ -12,6 +12,7 @@
         :h="item.models.base.height"
         :x="item.models.base.x"
         :y="item.models.base.y"
+        :grid=[30,30]
         @dragging="onDrag"
         @resizing="onResize"
         @activated="onClick(item.id)"
@@ -23,7 +24,10 @@
           :y="item.models.base.y"
         />
         <!-- <div :class="{'border': curChart.id === id}"></div> -->
-        <component v-bind:is="item.info.name" :config="item"></component>
+        <component
+          v-bind:is="item.info.name"
+          :config="item">
+        </component>
       </vue-draggable-resizable>
     </div>
     <div class="transform-ratio">

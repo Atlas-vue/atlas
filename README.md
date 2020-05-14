@@ -1,4 +1,4 @@
-<p align="center"><img width="100" src="./document/assets/atlas_logo.png" alt="Atlas logo"></p>
+<p align="center"><img width="100" src="./src/document/assets/atlas_logo.png" alt="Atlas logo"></p>
 <h2 align="center">ATLAS</h2>
 
 Atlas是一个数据可视化大屏的搭建系统，用于自定义数据展示。

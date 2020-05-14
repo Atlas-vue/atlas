@@ -5,7 +5,7 @@
       <el-menu-item index="/home/my">我的</el-menu-item>
       <el-menu-item index="/home/example">实例</el-menu-item>
       <el-menu-item index="/home/document">配置文档</el-menu-item>
-      <el-menu-item index="/home/help">文档帮助</el-menu-item>
+      <el-menu-item index="/home/plan">开发计划</el-menu-item>
     </el-menu>
   </div>
 </template>

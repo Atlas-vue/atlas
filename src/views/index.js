@@ -4,5 +4,5 @@ export default {
   Home: () => import(/* webpackChunkName: "Home" */ '../views/home'),
   Document: () => import(/* webpackChunkName: "Home" */ '../views/document'),
   Example: () => import(/* webpackChunkName: "Home" */ '../views/example'),
-  Help: () => import(/* webpackChunkName: "Home" */ '../views/help')
+  Plan: () => import(/* webpackChunkName: "Home" */ '../views/plan')
 }
