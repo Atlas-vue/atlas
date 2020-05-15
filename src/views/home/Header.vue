@@ -1,7 +1,13 @@
 <template>
   <div class="header-wrapper">
     <div class="logo-wrapper">Logo</div>
-    <el-menu router class="menu-wrapper" mode="horizontal" @select="handleSelect">
+    <el-menu
+      default-active="/home/my"
+      router
+      class="menu-wrapper"
+      mode="horizontal"
+      @select="handleSelect"
+    >
       <el-menu-item index="/home/my">我的</el-menu-item>
       <el-menu-item index="/home/example">实例</el-menu-item>
       <el-menu-item index="/home/document">配置文档</el-menu-item>

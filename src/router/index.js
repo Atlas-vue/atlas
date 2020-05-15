@@ -13,6 +13,7 @@ const routes = [
       {
         path: '/home',
         name: 'Home',
+        redirect: '/home/my',
         component: Views.Home,
         children: [
           {
