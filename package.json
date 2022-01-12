@@ -42,6 +42,6 @@
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
-    "markdown-it": "^10.0.0"
+    "markdown-it": "^12.3.2"
   }
 }
